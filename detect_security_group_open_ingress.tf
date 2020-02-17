@@ -38,8 +38,7 @@ PATTERN
   "Statement": [
     {
       "Action": [
-        "ec2:DescribeImageAttribute",
-        "ec2:ModifyImageAttribute"
+        "ec2:DescribeSecurityGroups"
       ],
       "Effect": "Allow",
       "Resource": "*"
