@@ -1,0 +1,50 @@
+{
+    "version": "0",
+    "id": "70aabc76-017a-d83a-bed4-5210858db75c",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.ec2",
+    "account": "000000000000",
+    "time": "2020-02-17T05:41:45Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.05",
+        "userIdentity": {
+            "type": "IAMUser",
+            "principalId": "AIDASGFRZ00F0",
+            "arn": "arn:aws:iam::000000000000:user/test",
+            "accountId": "000000000000",
+            "accessKeyId": "ASIASGFRZ00FZ",
+            "userName": "test",
+            "sessionContext": {
+                "sessionIssuer": {},
+                "webIdFederationData": {},
+                "attributes": {
+                    "mfaAuthenticated": "true",
+                    "creationDate": "2020-02-16T22:49:21Z"
+                }
+            },
+            "invokedBy": "signin.amazonaws.com"
+        },
+        "eventTime": "2020-02-17T05:41:45Z",
+        "eventSource": "ec2.amazonaws.com",
+        "eventName": "CreateSecurityGroup",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "00.000.000.000",
+        "userAgent": "signin.amazonaws.com",
+        "requestParameters": {
+            "groupName": "test-security-group",
+            "groupDescription": "testingec2rule",
+            "vpcId": "vpc-0000000e"
+        },
+        "responseElements": {
+            "requestId": "9b983e2a-306f-4047-87aa-042bbe0299ee",
+            "_return": true,
+            "groupId": "sg-000000c0d00fd0aed"
+        },
+        "requestID": "9b983e2a-306f-4047-87aa-042bbe0299ee",
+        "eventID": "b9af23b1-b83b-4c56-80b0-57e73c445ed0",
+        "eventType": "AwsApiCall"
+    }
+}
+
