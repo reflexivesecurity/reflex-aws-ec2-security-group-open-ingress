@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 module "detect_security_group_open_ingress" {
   source           = "git@github.com:cloudmitigator/reflex.git//modules/cwe_lambda?ref=v0.0.1"
   rule_name        = "DetectSecurityGroupOpenIngress"
