@@ -1,0 +1,81 @@
+{
+    "version": "0",
+    "id": "d90f24c3-f6e7-62df-657b-bdb36f26ac51",
+    "detail-type": "AWS API Call via CloudTrail",
+    "source": "aws.ec2",
+    "account": "000000000000",
+    "time": "2020-02-17T05:42:21Z",
+    "region": "us-east-1",
+    "resources": [],
+    "detail": {
+        "eventVersion": "1.05",
+        "userIdentity": {
+            "type": "IAMUser",
+            "principalId": "AIDASGFRZ00F00FGF",
+            "arn": "arn:aws:iam::000000000000:user/test",
+            "accountId": "000000000000",
+            "accessKeyId": "ASIASGFRZ00FZHZ",
+            "userName": "test",
+            "sessionContext": {
+                "sessionIssuer": {},
+                "webIdFederationData": {},
+                "attributes": {
+                    "mfaAuthenticated": "true",
+                    "creationDate": "2020-02-16T22:49:21Z"
+                }
+            },
+            "invokedBy": "signin.amazonaws.com"
+        },
+        "eventTime": "2020-02-17T05:42:21Z",
+        "eventSource": "ec2.amazonaws.com",
+        "eventName": "AuthorizeSecurityGroupIngress",
+        "awsRegion": "us-east-1",
+        "sourceIPAddress": "00.000.000.000",
+        "userAgent": "signin.amazonaws.com",
+        "requestParameters": {
+            "groupId": "sg-00000bd0bf00f0000",
+            "ipPermissions": {
+                "items": [
+                    {
+                        "ipProtocol": "tcp",
+                        "fromPort": 55,
+                        "toPort": 55,
+                        "groups": {},
+                        "ipRanges": {
+                            "items": [
+                                {
+                                    "cidrIp": "0.0.0.0/0"
+                                }
+                            ]
+                        },
+                        "ipv6Ranges": {},
+                        "prefixListIds": {}
+                    },
+                    {
+                        "ipProtocol": "tcp",
+                        "fromPort": 55,
+                        "toPort": 55,
+                        "groups": {},
+                        "ipRanges": {},
+                        "ipv6Ranges": {
+                            "items": [
+                                {
+                                    "cidrIpv6": "::/0"
+                                }
+                            ]
+                        },
+                        "prefixListIds": {}
+                    }
+                ]
+            }
+        },
+        "responseElements": {
+            "requestId": "7949b94c-d119-436e-b18d-44a8b8e8fe49",
+            "_return": true
+        },
+        "requestID": "7949b94c-d119-436e-b18d-44a8b8e8fe49",
+        "eventID": "ed02a212-5eff-4bf6-b5b3-8939726568e9",
+        "eventType": "AwsApiCall"
+    }
+}
+
