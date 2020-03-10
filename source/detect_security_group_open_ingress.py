@@ -44,9 +44,6 @@ class SecurityGroupOpenIngressRule(AWSRule):
 
         return is_compliant
 
-    def remediate(self):
-        pass
-
     def get_remediation_message(self):
         """ Returns a message about the remediation action that occurred """
         return f"Security group: {self.security_group_id} has open ingress IP ranges."
