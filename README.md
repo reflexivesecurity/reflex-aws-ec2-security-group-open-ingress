@@ -11,8 +11,8 @@ To use this rule either add it to your `reflex.yaml` configuration file:
 ```
 rules:
   aws:
-  - detect-security-group-open-ingress:
-      version: latest
+    - detect-security-group-open-ingress:
+        version: latest
 ```
 
 or add it directly to your Terraform:  
