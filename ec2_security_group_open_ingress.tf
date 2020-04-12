@@ -1,4 +1,4 @@
-module "detect_security_group_open_ingress" {
+module "ec2_security_group_open_ingress" {
   source           = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/cwe_lambda?ref=v0.5.7"
   rule_name        = "DetectSecurityGroupOpenIngress"
   rule_description = "Rule to check if AMI is modified to be public"
@@ -26,7 +26,7 @@ PATTERN
 
   function_name            = "DetectSecurityGroupOpenIngress"
   source_code_dir          = "${path.module}/source"
-  handler                  = "detect_security_group_open_ingress.lambda_handler"
+  handler                  = "ec2_security_group_open_ingress.lambda_handler"
   lambda_runtime           = "python3.7"
   environment_variable_map = { SNS_TOPIC = var.sns_topic_arn }
   custom_lambda_policy     = <<EOF
