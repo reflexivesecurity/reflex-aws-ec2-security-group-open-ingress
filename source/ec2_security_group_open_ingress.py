@@ -7,7 +7,7 @@ import boto3
 from reflex_core import AWSRule
 
 
-class SecurityGroupOpenIngressRule(AWSRule):
+class Ec2SecurityGroupOpenIngress(AWSRule):
     """ AWS rule for ensuring non-public AMIs """
 
     client = boto3.client("ec2")
@@ -52,5 +52,5 @@ class SecurityGroupOpenIngressRule(AWSRule):
 def lambda_handler(event, _):
     """ Handles the incoming event """
     print(event)
-    rule = SecurityGroupOpenIngressRule(json.loads(event["Records"][0]["body"]))
+    rule = Ec2SecurityGroupOpenIngress(json.loads(event["Records"][0]["body"]))
     rule.run_compliance_rule()

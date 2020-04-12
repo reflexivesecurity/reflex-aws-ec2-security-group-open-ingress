@@ -1,4 +1,4 @@
-# reflex-aws-detect-security-group-open-ingress
+# reflex-aws-ec2-security-group-open-ingress
 A Reflex rule for detecting EC2 Security Groups with open ingress allowed.
 
 To learn more about EC2 Security Groups, see [the AWS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html).
@@ -18,7 +18,7 @@ rules:
 or add it directly to your Terraform:  
 ```
 module "detect-security-group-open-ingress" {
-  source            = "git::https://github.com/cloudmitigator/reflex-aws-detect-security-group-open-ingress.git?ref=latest"
+  source            = "git::https://github.com/cloudmitigator/reflex-aws-ec2-security-group-open-ingress.git?ref=latest"
   sns_topic_arn     = module.central-sns-topic.arn
   reflex_kms_key_id = module.reflex-kms-key.key_id
 }
@@ -33,4 +33,4 @@ This rule has no configuration options.
 If you are interested in contributing, please review [our contribution guide](https://docs.cloudmitigator.com/about/contributing.html).
 
 ## License
-This Reflex rule is made available under the MPL 2.0 license. For more information view the [LICENSE](https://github.com/cloudmitigator/reflex-aws-detect-security-group-open-ingress/blob/master/LICENSE) 
+This Reflex rule is made available under the MPL 2.0 license. For more information view the [LICENSE](https://github.com/cloudmitigator/reflex-aws-ec2-security-group-open-ingress/blob/master/LICENSE) 
