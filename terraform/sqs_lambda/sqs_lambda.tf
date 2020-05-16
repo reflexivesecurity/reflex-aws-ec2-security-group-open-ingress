@@ -3,7 +3,7 @@ module "sqs_lambda" {
   cloudwatch_event_rule_id  = var.cloudwatch_event_rule_id
   cloudwatch_event_rule_arn = var.cloudwatch_event_rule_arn
   function_name            = "Ec2SecurityGroupOpenIngress"
-  source_code_dir          = "${path.module}/source"
+  source_code_dir          = "${path.module}/../../source"
   handler                  = "ec2_security_group_open_ingress.lambda_handler"
   lambda_runtime           = "python3.7"
   environment_variable_map = { SNS_TOPIC = var.sns_topic_arn }
