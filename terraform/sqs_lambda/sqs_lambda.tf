@@ -1,31 +1,9 @@
-module "ec2_security_group_open_ingress" {
-  source           = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/cwe_lambda?ref=v0.5.7"
-  rule_name        = "Ec2SecurityGroupOpenIngress"
-  rule_description = "Rule to check if AMI is modified to be public"
-
-  event_pattern = <<PATTERN
-{
-  "detail-type": [
-    "AWS API Call via CloudTrail"
-  ],
-  "source": [
-    "aws.ec2"
-  ],
-  "detail": {
-    "eventSource": [
-      "ec2.amazonaws.com"
-    ],
-    "eventName": [
-      "CreateSecurityGroup",
-      "AuthorizeSecurityGroupIngress"
-    ]
-  }
-}
-PATTERN
-
-
+module "sqs_lambda" {
+  source = "git::https://github.com/cloudmitigator/reflex-engine.git//modules/sqs_lambda?ref=v0.6.0"
+  cloudwatch_event_rule_id  = var.cloudwatch_event_rule_id
+  cloudwatch_event_rule_arn = var.cloudwatch_event_rule_arn
   function_name            = "Ec2SecurityGroupOpenIngress"
-  source_code_dir          = "${path.module}/source"
+  source_code_dir          = "${path.module}/../../source"
   handler                  = "ec2_security_group_open_ingress.lambda_handler"
   lambda_runtime           = "python3.7"
   environment_variable_map = { SNS_TOPIC = var.sns_topic_arn }
@@ -43,7 +21,6 @@ PATTERN
   ]
 }
 EOF
-
 
   queue_name    = "Ec2SecurityGroupOpenIngress"
   delay_seconds = 0
