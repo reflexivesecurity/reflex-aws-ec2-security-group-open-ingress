@@ -32,11 +32,11 @@ class Ec2SecurityGroupOpenIngress(AWSRule):
 
         for permission in response["SecurityGroups"][0]["IpPermissions"]:
             try:
-                for ip_range in permission['IpRanges']:
+                for ip_range in permission["IpRanges"]:
                     if ip_range["CidrIp"] == "0.0.0.0/0":
                         is_compliant = False
 
-                for ipv6_range in permission['Ipv6Ranges']:
+                for ipv6_range in permission["Ipv6Ranges"]:
                     if ipv6_range["CidrIpv6"] == "::/0":
                         is_compliant = False
             except KeyError:
@@ -52,8 +52,9 @@ class Ec2SecurityGroupOpenIngress(AWSRule):
 def lambda_handler(event, _):
     """ Handles the incoming event """
     print(event)
-    if subscription_confirmation.is_subscription_confirmation(event):
-        subscription_confirmation.confirm_subscription(event)
+    event_payload = json.loads(event["Records"][0]["body"])
+    if subscription_confirmation.is_subscription_confirmation(event_payload):
+        subscription_confirmation.confirm_subscription(event_payload)
         return
-    rule = Ec2SecurityGroupOpenIngress(json.loads(event["Records"][0]["body"]))
+    rule = Ec2SecurityGroupOpenIngress(event_payload)
     rule.run_compliance_rule()
