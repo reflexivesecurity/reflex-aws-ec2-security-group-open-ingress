@@ -6,14 +6,16 @@ module "sqs_lambda" {
   package_location          = var.package_location
   handler                   = "ec2_security_group_open_ingress.lambda_handler"
   lambda_runtime            = "python3.7"
-  environment_variable_map  = { SNS_TOPIC = var.sns_topic_arn }
-  custom_lambda_policy      = <<EOF
+  environment_variable_map = { SNS_TOPIC = var.sns_topic_arn,
+  MODE = var.mode }
+  custom_lambda_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Action": [
-        "ec2:DescribeSecurityGroups"
+        "ec2:DescribeSecurityGroups",
+        "ec2:RevokeSecurityGroupIngress"
       ],
       "Effect": "Allow",
       "Resource": "*"

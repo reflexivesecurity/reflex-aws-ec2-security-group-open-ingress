@@ -30,23 +30,43 @@ class Ec2SecurityGroupOpenIngress(AWSRule):
             GroupIds=[self.security_group_id]
         )
 
+        self.offending_permissions = []
         for permission in response["SecurityGroups"][0]["IpPermissions"]:
             try:
+                is_offending = False
                 for ip_range in permission["IpRanges"]:
                     if ip_range["CidrIp"] == "0.0.0.0/0":
+                        is_offending = True
                         is_compliant = False
 
                 for ipv6_range in permission["Ipv6Ranges"]:
                     if ipv6_range["CidrIpv6"] == "::/0":
+                        is_offending = True
                         is_compliant = False
+                if is_offending:
+                    self.offending_permissions.append(permission)
+
             except KeyError:
                 continue
 
         return is_compliant
 
+    def remediate(self):
+        """ Fix the non-compliant resource """
+        self.remove_open_ingress_rules()
+
+    def remove_open_ingress_rules(self):
+        self.client.revoke_security_group_ingress(
+            GroupId=self.security_group_id, IpPermissions=self.offending_permissions
+        )
+
     def get_remediation_message(self):
         """ Returns a message about the remediation action that occurred """
-        return f"Security group: {self.security_group_id} has open ingress IP ranges."
+        message = f"Security group: {self.security_group_id} has open ingress IP ranges."
+        if self.should_remediate():
+            message += " Offending IP permissions have been removed."
+        return message
+
 
 
 def lambda_handler(event, _):
