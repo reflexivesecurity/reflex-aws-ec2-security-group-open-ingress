@@ -64,7 +64,7 @@ class Ec2SecurityGroupOpenIngress(AWSRule):
         """ Returns a message about the remediation action that occurred """
         message = f"Security group: {self.security_group_id} has open ingress IP ranges."
         if self.should_remediate():
-            message += "Offending IP permissions have been removed."
+            message += " Offending IP permissions have been removed."
         return message
 
 
