@@ -10,6 +10,7 @@ module "assume_role" {
     {
       "Action": [
         "ec2:DescribeSecurityGroups"
+        "ec2:RevokeSecurityGroupIngress"
       ],
       "Effect": "Allow",
       "Resource": "*"
